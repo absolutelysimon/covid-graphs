@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import Graph from "./Graph";
 import "./App.css";
-import { Button, MenuItem, Select, TextField } from "@material-ui/core/";
+import {
+  Button,
+  MenuItem,
+  Select,
+  TextField,
+  Grid,
+  FormControl,
+  OutlinedInput
+} from "@material-ui/core/";
 import { Autocomplete } from "@material-ui/lab/";
 
 function App() {
@@ -20,14 +28,57 @@ function App() {
     // debugger;
     return (
       <>
-        <Graph
-          thedata={thedata}
-          countries={countries}
-          countryCount={countryCount}
-          allCountries={allCountries}
-          dataCategory={dataCategory}
-          timeshift={timeshift}
-        />
+        <Grid>
+          <Grid item xs={5}>
+            <Graph
+              thedata={thedata}
+              countries={countries}
+              countryCount={countryCount}
+              allCountries={allCountries}
+              dataCategory={dataCategory}
+              timeshift={timeshift}
+            />
+          </Grid>
+          <Grid>
+            <Grid item xs={2}>
+              <FormControl variant={"outlined"}>
+                <OutlinedInput id={5} />
+              </FormControl>
+              <Autocomplete
+                options={allCountries}
+                getOptionLabel={option => option.country}
+                id="timeshift"
+                debug
+                onChange={(evt, newValue) => setTimeshift(newValue.country)}
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label="Timeshift Base"
+                    margin="normal"
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Autocomplete
+                options={allCountries}
+                getOptionLabel={option => option.country}
+                id="comparison"
+                debug
+                onChange={(evt, newValue) =>
+                  setCountries([...countries, newValue.country])
+                }
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label="Compare against"
+                    margin="normal"
+                  />
+                )}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
         <Button
           onClick={() =>
             setCountries(countries => {
@@ -48,29 +99,6 @@ function App() {
           <MenuItem value={"DEATHS"}>Deaths</MenuItem>
           <MenuItem></MenuItem>
         </Select>
-
-        <Autocomplete
-          options={allCountries}
-          getOptionLabel={option => option.country}
-          id="timeshift"
-          debug
-          onChange={(evt, newValue) => setTimeshift(newValue.country)}
-          renderInput={params => (
-            <TextField {...params} label="Timeshift Base" margin="normal" />
-          )}
-        />
-        <Autocomplete
-          options={allCountries}
-          getOptionLabel={option => option.country}
-          id="comparison"
-          debug
-          onChange={(evt, newValue) =>
-            setCountries([...countries, newValue.country])
-          }
-          renderInput={params => (
-            <TextField {...params} label="Compare against" margin="normal" />
-          )}
-        />
       </>
     );
   } else {
@@ -88,7 +116,7 @@ function App() {
           }
           c_idx += 1;
         }
-        setAllCountries(temp_arr);
+        setAllCountries(temp_arr.sort((a, b) => a.country > b.country));
         // debugger;
         return {};
       })

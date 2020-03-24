@@ -135,7 +135,7 @@ export default function Graph({
   console.log(thedata);
   return (
     <>
-      <div style={{ width: "100%", height: 700 }}>
+      <div style={{ width: "90%", height: 600 }}>
         <ResponsiveContainer>
           <LineChart
             data={new_chart_data}
