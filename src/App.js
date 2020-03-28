@@ -21,11 +21,10 @@ function App() {
   const [thedata, setThedata] = useState(false);
   const [countries, setCountries] = useState([]);
   const [countryCount, setCountryCount] = useState(0);
-  const [allCountries, setAllCountries] = useState([]);
   const [dataCategory, setDataCategory] = useState("DEATHS");
   const [timeshift, setTimeshift] = useState(false);
-  const [deaths, setDeaths] = useState(true);
-  const [cases, setCases] = useState(false);
+  const [deaths, setDeaths] = useState(false);
+  const [cases, setCases] = useState(true);
   const [recovered, setRecovered] = useState(false);
   const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
@@ -57,9 +56,11 @@ function App() {
               clearOnEscape
               id="timeshift"
               debug
-              onInputChange={(evt, newValue) =>
-                setCountries([...countries, newValue])
-              }
+              onChange={(evt, newValue) => {
+                if (newValue) {
+                  setCountries([...countries, newValue]);
+                }
+              }}
               renderInput={params => (
                 <TextField {...params} label="Add a country" margin="normal" />
               )}
@@ -72,40 +73,21 @@ function App() {
                 }
               />
             ))}
-
+            Cases
             <Checkbox
               checked={cases}
-              onChange={setCases(evt => evt.target.checked)}
+              onChange={evt => setCases(evt.target.checked)}
               label="Cases"
               inputProps={{ "aria-label": "primary checkbox" }}
             />
+            Deaths
             <Checkbox
-              checked={cases}
-              onChange={setDeaths(evt => evt.target.checked)}
+              checked={deaths}
+              onChange={evt => setDeaths(evt.target.checked)}
               label="Deaths"
-            />
-            <Checkbox
-              checked={cases}
-              label="Recoveries"
-              onChange={setRecovered(evt => evt.target.checked)}
-              inputProps={{ "aria-label": "primary checkbox" }}
             />
           </Grid>
         </Grid>
-        <Button
-          onClick={() =>
-            setCountries(countries => {
-              // debugger;
-              return [
-                ...countries,
-                allCountries[Math.floor(Math.random() * allCountries.length)]
-                  .country
-              ];
-            })
-          }
-        >
-          Random Country
-        </Button>
         <Select onChange={evt => setDataCategory(evt.target.value)}>
           <MenuItem value={"CASES"}>Total Cases</MenuItem>
           <MenuItem value={"RECOVERED"}>Recovered</MenuItem>
@@ -131,7 +113,6 @@ function App() {
           }
           c_idx += 1;
         }
-        setAllCountries(temp_arr.sort((a, b) => a.country > b.country));
         // debugger;
         return {};
       })

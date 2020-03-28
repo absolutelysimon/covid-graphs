@@ -22,16 +22,87 @@ export default function Graph({
   dataCategory,
   timeshift = false
 }) {
-  function ProcessData(thedata, countries) {
-    countries.forEach(ele => {});
+  function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
+  function ProcessData(thedata, countries) {
+    // debugger;
+    let new_chart_data = [];
+    let found = false;
+    countries.forEach(country => {
+      thedata.forEach(dataset => {
+        if (dataset.country === country && dataset.province === null) {
+          // debugger;
+          found = true;
+          new_chart_data[country] = {
+            deaths: dataset.timeline.deaths,
+            cases: dataset.timeline.cases
+          };
+        } else if (dataset.country === country) {
+          new_chart_data[country]["provinces"] = [
+            ...new_chart_data[country]["provinces"],
+            dataset.province
+          ];
+        }
+      });
+      if (!found) {
+        //Do other stuff
+      }
+    });
+    // debugger;
+    return new_chart_data;
+  }
+
+  let instance_data = ProcessData(thedata, countries);
+  let chart_data = [];
+  let y_max = 0;
+  for (const ele in instance_data) {
+    let idx = 0;
+    for (const date in instance_data[ele].deaths) {
+      // debugger;
+      if (parseInt(instance_data[ele].deaths[date]) > y_max) {
+        y_max = parseInt(instance_data[ele].deaths[date]);
+      }
+      // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
+      if (chart_data[idx]) {
+        chart_data[idx][ele] = instance_data[ele].deaths[date];
+      } else {
+        chart_data[idx] = {};
+        chart_data[idx]["date"] = new Date(date);
+        chart_data[idx][ele] = instance_data[ele].deaths[date];
+      }
+      idx += 1;
+    }
+    idx = 0;
+    for (const date in instance_data[ele].cases) {
+      // debugger;
+      if (parseInt(instance_data[ele].cases[date]) > y_max) {
+        y_max = parseInt(instance_data[ele].cases[date]);
+      }
+      // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
+      if (chart_data[idx]) {
+        chart_data[idx][ele] = instance_data[ele].cases[date];
+      } else {
+        chart_data[idx] = {};
+        chart_data[idx]["date"] = new Date(date);
+        chart_data[idx][ele] = instance_data[ele].cases[date];
+      }
+      idx += 1;
+    }
+  }
+  // debugger;
   return (
     <>
       <div style={{ width: "90%", height: 600 }}>
         <ResponsiveContainer>
           <LineChart
-            data={new_chart_data}
+            data={chart_data}
             margin={{
               top: 5,
               right: 30,
@@ -42,7 +113,7 @@ export default function Graph({
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" label="Date" />
             {console.log("Setting max to " + y_max)}
-            <YAxis domain={[0, parseInt(y_max)]} />
+            <YAxis domain={[0, y_max]} />
             <Tooltip />
             <Legend />
             {timeshift ? (
