@@ -1,0 +1,826 @@
+0:
+date: "2020-03-25"
+confirmed: 381
+deaths: 1
+recovered: 0
+confirmed_diff: 139
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 380
+active_diff: 138
+fatality_rate: 0.0026
+region: {iso: "USA", name: "US", province: "Alabama", lat: "32.3182", long: "-86.9023", …}
+__proto__: Object
+1:
+date: "2020-03-25"
+confirmed: 41
+deaths: 1
+recovered: 0
+confirmed_diff: 7
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 40
+active_diff: 6
+fatality_rate: 0.0244
+region: {iso: "USA", name: "US", province: "Alaska", lat: "61.3707", long: "-152.4044", …}
+__proto__: Object
+2:
+date: "2020-03-25"
+confirmed: 0
+deaths: 0
+recovered: 0
+confirmed_diff: 0
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 0
+active_diff: 0
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "American Samoa", lat: "-14.270999999999999", long: "-170.132", …}
+__proto__: Object
+3:
+date: "2020-03-25"
+confirmed: 401
+deaths: 6
+recovered: 0
+confirmed_diff: 75
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 395
+active_diff: 74
+fatality_rate: 0.015
+region: {iso: "USA", name: "US", province: "Arizona", lat: "33.7298", long: "-111.4312", …}
+__proto__: Object
+4:
+date: "2020-03-25"
+confirmed: 280
+deaths: 2
+recovered: 0
+confirmed_diff: 61
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 278
+active_diff: 61
+fatality_rate: 0.0071
+region: {iso: "USA", name: "US", province: "Arkansas", lat: "34.9697", long: "-92.3731", …}
+__proto__: Object
+5:
+date: "2020-03-25"
+confirmed: 2998
+deaths: 65
+recovered: 0
+confirmed_diff: 460
+deaths_diff: 15
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 2933
+active_diff: 445
+fatality_rate: 0.0217
+region: {iso: "USA", name: "US", province: "California", lat: "36.1162", long: "-119.6816", …}
+__proto__: Object
+6:
+date: "2020-03-25"
+confirmed: 1021
+deaths: 16
+recovered: 0
+confirmed_diff: 298
+deaths_diff: 8
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1005
+active_diff: 290
+fatality_rate: 0.0157
+region: {iso: "USA", name: "US", province: "Colorado", lat: "39.0598", long: "-105.3111", …}
+__proto__: Object
+7:
+date: "2020-03-25"
+confirmed: 875
+deaths: 19
+recovered: 0
+confirmed_diff: 257
+deaths_diff: 7
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 856
+active_diff: 250
+fatality_rate: 0.0217
+region: {iso: "USA", name: "US", province: "Connecticut", lat: "41.5978", long: "-72.7554", …}
+__proto__: Object
+8:
+date: "2020-03-25"
+confirmed: 119
+deaths: 0
+recovered: 0
+confirmed_diff: 15
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 119
+active_diff: 15
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Delaware", lat: "39.3185", long: "-75.5071", …}
+__proto__: Object
+9:
+date: "2020-03-25"
+confirmed: 49
+deaths: 0
+recovered: 0
+confirmed_diff: 0
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 49
+active_diff: 0
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Diamond Princess", lat: "35.4437", long: "139.6380", …}
+__proto__: Object
+10:
+date: "2020-03-25"
+confirmed: 187
+deaths: 2
+recovered: 0
+confirmed_diff: 46
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 185
+active_diff: 46
+fatality_rate: 0.0107
+region: {iso: "USA", name: "US", province: "District of Columbia", lat: "38.8974", long: "-77.0268", …}
+__proto__: Object
+11:
+date: "2020-03-25"
+confirmed: 1682
+deaths: 23
+recovered: 0
+confirmed_diff: 270
+deaths_diff: 5
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1659
+active_diff: 265
+fatality_rate: 0.0137
+region: {iso: "USA", name: "US", province: "Florida", lat: "27.7663", long: "-81.6868", …}
+__proto__: Object
+12:
+date: "2020-03-25"
+confirmed: 1247
+deaths: 40
+recovered: 0
+confirmed_diff: 221
+deaths_diff: 8
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1207
+active_diff: 213
+fatality_rate: 0.0321
+region: {iso: "USA", name: "US", province: "Georgia", lat: "33.0406", long: "-83.6431", …}
+__proto__: Object
+13:
+date: "2020-03-25"
+confirmed: 28
+deaths: 1
+recovered: 0
+confirmed_diff: 0
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 27
+active_diff: 0
+fatality_rate: 0.0357
+region: {iso: "USA", name: "US", province: "Grand Princess", lat: "37.6489", long: "-122.6655", …}
+__proto__: Object
+14:
+date: "2020-03-25"
+confirmed: 37
+deaths: 1
+recovered: 0
+confirmed_diff: 5
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 36
+active_diff: 5
+fatality_rate: 0.027
+region: {iso: "USA", name: "US", province: "Guam", lat: "13.4443", long: "144.7937", …}
+__proto__: Object
+15:
+date: "2020-03-25"
+confirmed: 91
+deaths: 0
+recovered: 0
+confirmed_diff: 1
+deaths_diff: -1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 91
+active_diff: 2
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Hawaii", lat: "21.0943", long: "-157.4983", …}
+__proto__: Object
+16:
+date: "2020-03-25"
+confirmed: 91
+deaths: 0
+recovered: 0
+confirmed_diff: 10
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 91
+active_diff: 10
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Idaho", lat: "44.2405", long: "-114.4788", …}
+__proto__: Object
+17:
+date: "2020-03-25"
+confirmed: 1865
+deaths: 19
+recovered: 0
+confirmed_diff: 328
+deaths_diff: 3
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1846
+active_diff: 325
+fatality_rate: 0.0102
+region: {iso: "USA", name: "US", province: "Illinois", lat: "40.3495", long: "-88.9861", …}
+__proto__: Object
+18:
+date: "2020-03-25"
+confirmed: 477
+deaths: 14
+recovered: 0
+confirmed_diff: 109
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 463
+active_diff: 107
+fatality_rate: 0.0294
+region: {iso: "USA", name: "US", province: "Indiana", lat: "39.8494", long: "-86.2583", …}
+__proto__: Object
+19:
+date: "2020-03-25"
+confirmed: 146
+deaths: 1
+recovered: 0
+confirmed_diff: 22
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 145
+active_diff: 21
+fatality_rate: 0.0068
+region: {iso: "USA", name: "US", province: "Iowa", lat: "42.0115", long: "-93.2105", …}
+__proto__: Object
+20:
+date: "2020-03-25"
+confirmed: 134
+deaths: 3
+recovered: 0
+confirmed_diff: 34
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 131
+active_diff: 33
+fatality_rate: 0.0224
+region: {iso: "USA", name: "US", province: "Kansas", lat: "38.5266", long: "-96.7265", …}
+__proto__: Object
+21:
+date: "2020-03-25"
+confirmed: 197
+deaths: 5
+recovered: 0
+confirmed_diff: 35
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 192
+active_diff: 34
+fatality_rate: 0.0254
+region: {iso: "USA", name: "US", province: "Kentucky", lat: "37.6681", long: "-84.6701", …}
+__proto__: Object
+22:
+date: "2020-03-25"
+confirmed: 1795
+deaths: 65
+recovered: 0
+confirmed_diff: 407
+deaths_diff: 19
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1730
+active_diff: 388
+fatality_rate: 0.0362
+region: {iso: "USA", name: "US", province: "Louisiana", lat: "31.1695", long: "-91.8678", …}
+__proto__: Object
+23:
+date: "2020-03-25"
+confirmed: 142
+deaths: 0
+recovered: 0
+confirmed_diff: 24
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 142
+active_diff: 24
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Maine", lat: "44.6939", long: "-69.3819", …}
+__proto__: Object
+24:
+date: "2020-03-25"
+confirmed: 425
+deaths: 4
+recovered: 0
+confirmed_diff: 76
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 421
+active_diff: 76
+fatality_rate: 0.0094
+region: {iso: "USA", name: "US", province: "Maryland", lat: "39.0639", long: "-76.8021", …}
+__proto__: Object
+25:
+date: "2020-03-25"
+confirmed: 1838
+deaths: 15
+recovered: 0
+confirmed_diff: 679
+deaths_diff: 4
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1823
+active_diff: 675
+fatality_rate: 0.0082
+region: {iso: "USA", name: "US", province: "Massachusetts", lat: "42.2302", long: "-71.5301", …}
+__proto__: Object
+26:
+date: "2020-03-25"
+confirmed: 2296
+deaths: 43
+recovered: 0
+confirmed_diff: 503
+deaths_diff: 19
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 2253
+active_diff: 484
+fatality_rate: 0.0187
+region: {iso: "USA", name: "US", province: "Michigan", lat: "43.3266", long: "-84.5361", …}
+__proto__: Object
+27:
+date: "2020-03-25"
+confirmed: 286
+deaths: 1
+recovered: 0
+confirmed_diff: 25
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 285
+active_diff: 25
+fatality_rate: 0.0035
+region: {iso: "USA", name: "US", province: "Minnesota", lat: "45.6945", long: "-93.9002", …}
+__proto__: Object
+28:
+date: "2020-03-25"
+confirmed: 377
+deaths: 3
+recovered: 0
+confirmed_diff: 57
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 374
+active_diff: 55
+fatality_rate: 0.008
+region: {iso: "USA", name: "US", province: "Mississippi", lat: "32.7416", long: "-89.6787", …}
+__proto__: Object
+29:
+date: "2020-03-25"
+confirmed: 354
+deaths: 8
+recovered: 0
+confirmed_diff: 97
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 346
+active_diff: 96
+fatality_rate: 0.0226
+region: {iso: "USA", name: "US", province: "Missouri", lat: "38.4561", long: "-92.2884", …}
+__proto__: Object
+30:
+date: "2020-03-25"
+confirmed: 65
+deaths: 0
+recovered: 0
+confirmed_diff: 14
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 65
+active_diff: 14
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Montana", lat: "46.9219", long: "-110.4544", …}
+__proto__: Object
+31:
+date: "2020-03-25"
+confirmed: 71
+deaths: 0
+recovered: 0
+confirmed_diff: 5
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 71
+active_diff: 5
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Nebraska", lat: "41.1254", long: "-98.2681", …}
+__proto__: Object
+32:
+date: "2020-03-25"
+confirmed: 323
+deaths: 6
+recovered: 0
+confirmed_diff: 45
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 317
+active_diff: 43
+fatality_rate: 0.0186
+region: {iso: "USA", name: "US", province: "Nevada", lat: "38.3135", long: "-117.0554", …}
+__proto__: Object
+33:
+date: "2020-03-25"
+confirmed: 108
+deaths: 1
+recovered: 0
+confirmed_diff: 7
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 107
+active_diff: 7
+fatality_rate: 0.0093
+region: {iso: "USA", name: "US", province: "New Hampshire", lat: "43.4525", long: "-71.5639", …}
+__proto__: Object
+34:
+date: "2020-03-25"
+confirmed: 4402
+deaths: 62
+recovered: 0
+confirmed_diff: 727
+deaths_diff: 18
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 4340
+active_diff: 709
+fatality_rate: 0.0141
+region: {iso: "USA", name: "US", province: "New Jersey", lat: "40.2989", long: "-74.5210", …}
+__proto__: Object
+35:
+date: "2020-03-25"
+confirmed: 113
+deaths: 1
+recovered: 0
+confirmed_diff: 13
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 112
+active_diff: 12
+fatality_rate: 0.0088
+region: {iso: "USA", name: "US", province: "New Mexico", lat: "34.8405", long: "-106.2485", …}
+__proto__: Object
+36:
+date: "2020-03-25"
+confirmed: 30841
+deaths: 285
+recovered: 0
+confirmed_diff: 5160
+deaths_diff: 75
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 30556
+active_diff: 5085
+fatality_rate: 0.0092
+region: {iso: "USA", name: "US", province: "New York", lat: "42.1657", long: "-74.9481", …}
+__proto__: Object
+37:
+date: "2020-03-25"
+confirmed: 590
+deaths: 2
+recovered: 0
+confirmed_diff: 95
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 588
+active_diff: 93
+fatality_rate: 0.0034
+region: {iso: "USA", name: "US", province: "North Carolina", lat: "35.6301", long: "-79.8064", …}
+__proto__: Object
+38:
+date: "2020-03-25"
+confirmed: 45
+deaths: 0
+recovered: 0
+confirmed_diff: 9
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 45
+active_diff: 9
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "North Dakota", lat: "47.5289", long: "-99.7840", …}
+__proto__: Object
+39:
+date: "2020-03-25"
+confirmed: 0
+deaths: 0
+recovered: 0
+confirmed_diff: 0
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 0
+active_diff: 0
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Northern Mariana Islands", lat: "15.0979", long: "145.6739", …}
+__proto__: Object
+40:
+date: "2020-03-25"
+confirmed: 704
+deaths: 11
+recovered: 0
+confirmed_diff: 137
+deaths_diff: 3
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 693
+active_diff: 134
+fatality_rate: 0.0156
+region: {iso: "USA", name: "US", province: "Ohio", lat: "40.3888", long: "-82.7649", …}
+__proto__: Object
+41:
+date: "2020-03-25"
+confirmed: 164
+deaths: 5
+recovered: 0
+confirmed_diff: 58
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 159
+active_diff: 56
+fatality_rate: 0.0305
+region: {iso: "USA", name: "US", province: "Oklahoma", lat: "35.5653", long: "-96.9289", …}
+__proto__: Object
+42:
+date: "2020-03-25"
+confirmed: 266
+deaths: 10
+recovered: 0
+confirmed_diff: 56
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 256
+active_diff: 54
+fatality_rate: 0.0376
+region: {iso: "USA", name: "US", province: "Oregon", lat: "44.5720", long: "-122.0709", …}
+__proto__: Object
+43:
+date: "2020-03-25"
+confirmed: 1260
+deaths: 15
+recovered: 0
+confirmed_diff: 314
+deaths_diff: 7
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1245
+active_diff: 307
+fatality_rate: 0.0119
+region: {iso: "USA", name: "US", province: "Pennsylvania", lat: "40.5908", long: "-77.2098", …}
+__proto__: Object
+44:
+date: "2020-03-25"
+confirmed: 51
+deaths: 2
+recovered: 0
+confirmed_diff: 12
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 49
+active_diff: 12
+fatality_rate: 0.0392
+region: {iso: "USA", name: "US", province: "Puerto Rico", lat: "18.2208", long: "-66.5901", …}
+__proto__: Object
+45:
+date: "2020-03-25"
+confirmed: 0
+deaths: 0
+recovered: 361
+confirmed_diff: 0
+deaths_diff: 0
+recovered_diff: 13
+last_update: "2020-03-25 23:33:19"
+active: -361
+active_diff: -13
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Recovered", lat: "0.0", long: "0.0", …}
+__proto__: Object
+46:
+date: "2020-03-25"
+confirmed: 132
+deaths: 0
+recovered: 0
+confirmed_diff: 8
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 132
+active_diff: 8
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Rhode Island", lat: "41.6809", long: "-71.5118", …}
+__proto__: Object
+47:
+date: "2020-03-25"
+confirmed: 424
+deaths: 7
+recovered: 0
+confirmed_diff: 82
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 417
+active_diff: 80
+fatality_rate: 0.0165
+region: {iso: "USA", name: "US", province: "South Carolina", lat: "33.8569", long: "-80.9450", …}
+__proto__: Object
+48:
+date: "2020-03-25"
+confirmed: 41
+deaths: 1
+recovered: 0
+confirmed_diff: 11
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 40
+active_diff: 11
+fatality_rate: 0.0244
+region: {iso: "USA", name: "US", province: "South Dakota", lat: "44.2998", long: "-99.4388", …}
+__proto__: Object
+49:
+date: "2020-03-25"
+confirmed: 916
+deaths: 3
+recovered: 0
+confirmed_diff: 144
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 913
+active_diff: 143
+fatality_rate: 0.0033
+region: {iso: "USA", name: "US", province: "Tennessee", lat: "35.7478", long: "-86.6923", …}
+__proto__: Object
+50:
+date: "2020-03-25"
+confirmed: 1229
+deaths: 15
+recovered: 0
+confirmed_diff: 274
+deaths_diff: 3
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 1214
+active_diff: 271
+fatality_rate: 0.0122
+region: {iso: "USA", name: "US", province: "Texas", lat: "31.0545", long: "-97.5635", …}
+__proto__: Object
+51:
+date: "2020-03-25"
+confirmed: 340
+deaths: 1
+recovered: 0
+confirmed_diff: 42
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 339
+active_diff: 42
+fatality_rate: 0.0029
+region: {iso: "USA", name: "US", province: "Utah", lat: "40.1500", long: "-111.8624", …}
+__proto__: Object
+52:
+date: "2020-03-25"
+confirmed: 125
+deaths: 8
+recovered: 0
+confirmed_diff: 30
+deaths_diff: 1
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 117
+active_diff: 29
+fatality_rate: 0.064
+region: {iso: "USA", name: "US", province: "Vermont", lat: "44.0459", long: "-72.7107", …}
+__proto__: Object
+53:
+date: "2020-03-25"
+confirmed: 17
+deaths: 0
+recovered: 0
+confirmed_diff: 0
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 17
+active_diff: 0
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Virgin Islands", lat: "18.3358", long: "-64.8963", …}
+__proto__: Object
+54:
+date: "2020-03-25"
+confirmed: 396
+deaths: 9
+recovered: 0
+confirmed_diff: 103
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 387
+active_diff: 103
+fatality_rate: 0.0227
+region: {iso: "USA", name: "US", province: "Virginia", lat: "37.7693", long: "-78.1700", …}
+__proto__: Object
+55:
+date: "2020-03-25"
+confirmed: 2591
+deaths: 133
+recovered: 0
+confirmed_diff: 263
+deaths_diff: 17
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 2458
+active_diff: 246
+fatality_rate: 0.0513
+region: {iso: "USA", name: "US", province: "Washington", lat: "47.4009", long: "-121.4905", …}
+__proto__: Object
+56:
+date: "2020-03-25"
+confirmed: 39
+deaths: 0
+recovered: 0
+confirmed_diff: 17
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 39
+active_diff: 17
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "West Virginia", lat: "38.4912", long: "-80.9545", …}
+__proto__: Object
+57:
+date: "2020-03-25"
+confirmed: 621
+deaths: 7
+recovered: 0
+confirmed_diff: 140
+deaths_diff: 2
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 614
+active_diff: 138
+fatality_rate: 0.0113
+region: {iso: "USA", name: "US", province: "Wisconsin", lat: "44.2685", long: "-89.6165", …}
+__proto__: Object
+58:
+date: "2020-03-25"
+confirmed: 44
+deaths: 0
+recovered: 0
+confirmed_diff: 15
+deaths_diff: 0
+recovered_diff: 0
+last_update: "2020-03-25 23:33:19"
+active: 44
+active_diff: 15
+fatality_rate: 0
+region: {iso: "USA", name: "US", province: "Wyoming", lat: "42.7560", long: "-107.3025", …}
+__proto__: Object

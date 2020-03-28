@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import Graph from "./Graph";
 import "./App.css";
+import countries_list from "./countries_list";
 import {
   Button,
   MenuItem,
@@ -10,8 +11,11 @@ import {
   Grid,
   FormControl,
   OutlinedInput,
+  Chip,
+  Checkbox
 } from "@material-ui/core/";
 import { Autocomplete } from "@material-ui/lab/";
+import ProcessData from "./ProcessData";
 
 function App() {
   const [thedata, setThedata] = useState(false);
@@ -20,11 +24,16 @@ function App() {
   const [allCountries, setAllCountries] = useState([]);
   const [dataCategory, setDataCategory] = useState("DEATHS");
   const [timeshift, setTimeshift] = useState(false);
+  const [deaths, setDeaths] = useState(true);
+  const [cases, setCases] = useState(false);
+  const [recovered, setRecovered] = useState(false);
+  const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
-    targetUrl = "https://corona.lmao.ninja/historical";
+    targetUrl = "https://corona.lmao.ninja/v2/historical";
+  // debugger;
 
   if (thedata) {
-    // console.log("Res array: " + res_arr);
+    // console.log(thedata);
     // debugger;
     return (
       <>
@@ -34,49 +43,53 @@ function App() {
               thedata={thedata}
               countries={countries}
               countryCount={countryCount}
-              allCountries={allCountries}
+              allCountries={countries_list}
               dataCategory={dataCategory}
               timeshift={timeshift}
+              deaths={deaths}
+              cases={cases}
+              recoverd={recovered}
             />
           </Grid>
-          <Grid>
-            <Grid item xs={2}>
-              <FormControl variant={"outlined"}>
-                <OutlinedInput id={5} />
-              </FormControl>
-              <Autocomplete
-                options={allCountries}
-                getOptionLabel={option => option.country}
-                id="timeshift"
-                debug
-                onChange={(evt, newValue) => setTimeshift(newValue.country)}
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    label="Timeshift Base"
-                    margin="normal"
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={2}>
-              <Autocomplete
-                options={allCountries}
-                getOptionLabel={option => option.country}
-                id="comparison"
-                debug
-                onChange={(evt, newValue) =>
-                  setCountries([...countries, newValue.country])
+          <Grid item xs={2}>
+            <Autocomplete
+              options={countries_list}
+              clearOnEscape
+              id="timeshift"
+              debug
+              onInputChange={(evt, newValue) =>
+                setCountries([...countries, newValue])
+              }
+              renderInput={params => (
+                <TextField {...params} label="Add a country" margin="normal" />
+              )}
+            />
+            {countries.map(ele => (
+              <Chip
+                label={ele}
+                onDelete={(evt, oldValue) =>
+                  setCountries(countries.indexOf(oldValue), 1)
                 }
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    label="Compare against"
-                    margin="normal"
-                  />
-                )}
               />
-            </Grid>
+            ))}
+
+            <Checkbox
+              checked={cases}
+              onChange={setCases(evt => evt.target.checked)}
+              label="Cases"
+              inputProps={{ "aria-label": "primary checkbox" }}
+            />
+            <Checkbox
+              checked={cases}
+              onChange={setDeaths(evt => evt.target.checked)}
+              label="Deaths"
+            />
+            <Checkbox
+              checked={cases}
+              label="Recoveries"
+              onChange={setRecovered(evt => evt.target.checked)}
+              inputProps={{ "aria-label": "primary checkbox" }}
+            />
           </Grid>
         </Grid>
         <Button
@@ -107,6 +120,8 @@ function App() {
       .then(data => {
         // console.table(data);
         // console.log(data);
+        // debugger;
+        // let new_data = ProcessData(data.data);
         setThedata(data);
         let c_idx = 0;
         let temp_arr = [];
