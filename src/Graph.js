@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer
 } from "recharts";
+import regression from "regression";
 
 // function findCountry(thedata, country) {
 //   return thedata.filter(ent => ent.country === country);
@@ -59,10 +60,33 @@ export default function Graph({
     return new_chart_data;
   }
 
+  function ProcessProjection(thedata, chart_data, countries) {
+    let data_array = [];
+    let regression_results = [];
+    let idx = 0;
+    for (const entry_index in chart_data) {
+      const entry = chart_data[entry_index]; // entry = {date:01/24/16,country1-deaths:423}
+      for (const country_data_index in entry) {
+        if (country_data_index !== "Date") {
+          if (!data_array[country_data_index]) {
+            data_array[country_data_index] = [];
+          }
+          data_array[country_data_index].push([idx, entry[country_data_index]]);
+        }
+      }
+      idx += 1;
+    }
+    for (const entry in data_array) {
+      regression_results[entry] = regression.exponential(data_array[entry]);
+    }
+    debugger;
+  }
+
   let instance_data = ProcessData(thedata, countries);
   let chart_data = [];
   let y_max = 0;
   for (const ele in instance_data) {
+    //chart_data = [{date:01/24/16,country1:}]
     let idx = 0;
     for (const date in instance_data[ele].deaths) {
       // debugger;
@@ -74,8 +98,8 @@ export default function Graph({
         chart_data[idx][ele] = instance_data[ele].deaths[date];
       } else {
         chart_data[idx] = {};
-        chart_data[idx]["date"] = new Date(date);
-        chart_data[idx][ele] = instance_data[ele].deaths[date];
+        chart_data[idx]["Date"] = new Date(date);
+        chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
       }
       idx += 1;
     }
@@ -90,12 +114,13 @@ export default function Graph({
         chart_data[idx][ele] = instance_data[ele].cases[date];
       } else {
         chart_data[idx] = {};
-        chart_data[idx]["date"] = new Date(date);
-        chart_data[idx][ele] = instance_data[ele].cases[date];
+        chart_data[idx]["Date"] = new Date(date);
+        chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
       }
       idx += 1;
     }
   }
+  ProcessProjection(thedata, chart_data, countries);
   // debugger;
   return (
     <>
