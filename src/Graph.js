@@ -64,6 +64,12 @@ export default function Graph({
     let data_array = [];
     let regression_results = [];
     let idx = 0;
+    let filled_data_length = chart_data.length;
+    // debugger;
+    for (let h = 0; h < 14; h++) {
+      let date = new Date(chart_data[chart_data.length - 1]["Date"]);
+      chart_data.push({ Date: new Date(date.setDate(date.getDate() + 1)) });
+    }
     for (const entry_index in chart_data) {
       const entry = chart_data[entry_index]; // entry = {date:01/24/16,country1-deaths:423}
       for (const country_data_index in entry) {
@@ -71,15 +77,81 @@ export default function Graph({
           if (!data_array[country_data_index]) {
             data_array[country_data_index] = [];
           }
-          data_array[country_data_index].push([idx, entry[country_data_index]]);
+          data_array[country_data_index].push([
+            idx,
+            parseInt(entry[country_data_index])
+          ]);
         }
       }
       idx += 1;
     }
-    for (const entry in data_array) {
-      regression_results[entry] = regression.exponential(data_array[entry]);
+    let new_array = [];
+
+    for (let data_idx in data_array) {
+      console.log("Beginning " + data_idx);
+      let shifted_idx = 0;
+      while (data_array[data_idx][shifted_idx][1] === 0) {
+        shifted_idx += 1;
+      }
+      new_array[data_idx] = JSON.parse(JSON.stringify(data_array[data_idx]));
+      // debugger;
+      for (let i in data_array[data_idx]) {
+        i = parseInt(i);
+        // console.log(
+        //   "Array length: " +
+        //     data_array[data_idx].length +
+        //     " i: " +
+        //     i +
+        //     "shifted_idx: " +
+        //     shifted_idx
+        // );
+        // console.log(
+        //   "Therefore: " + (data_array[data_idx].length > i + shifted_idx + 1)
+        // );
+        // debugger;
+        // console.log(
+        //   "Hey javascript, is " +
+        //     data_array[data_idx].length +
+        //     " greater than " +
+        //     (i + shifted_idx + 1) +
+        //     "? " +
+        //     (data_array[data_idx].length > i + shifted_idx + 1 ? "Yes" : "No")
+        // );
+        if (data_array[data_idx].length > i + shifted_idx + 1) {
+          new_array[data_idx][i][1] =
+            new_array[data_idx][i + shifted_idx + 1][1];
+        } else {
+          new_array[data_idx] = new_array[data_idx].splice(
+            0,
+            new_array[data_idx].length - shifted_idx - 1
+          );
+          break;
+        }
+      }
+
+      //if the first bunch of values are zero
+      //     find where it stops being zero
+      //     shift the data to this point
+      //     regress on the new shifted data
     }
-    debugger;
+
+    for (const entry in new_array) {
+      const predict = regression.exponential(new_array[entry]).predict;
+      let prediction_array = [];
+      for (let h = 0; h < 14; h++) {
+        chart_data[filled_data_length + h][entry + " - prediction"] = predict(
+          new_array[entry].length + h + 1
+        )[1];
+        prediction_array.push(predict(new_array[entry].length + h + 1));
+      }
+      let shifted_idx = 0;
+      while (data_array[entry][shifted_idx][1] === 0) {
+        shifted_idx += 1;
+      }
+      // debugger;
+      regression_results[entry] = regression.exponential(new_array[entry]);
+    }
+    return chart_data;
   }
 
   let instance_data = ProcessData(thedata, countries);
@@ -120,7 +192,10 @@ export default function Graph({
       idx += 1;
     }
   }
-  ProcessProjection(thedata, chart_data, countries);
+  chart_data = ProcessProjection(thedata, chart_data, countries);
+  function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  }
   // debugger;
   return (
     <>
@@ -138,8 +213,23 @@ export default function Graph({
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" label="Date" />
             {console.log("Setting max to " + y_max)}
-            <YAxis domain={[0, y_max]} />
-            <Tooltip />
+            <YAxis domain={[0, 100000]} />
+            <Tooltip
+              content={({ active, payload, label }) => {
+                if (active) {
+                  // debugger;
+                  return (
+                    <div className="custom-tooltip">
+                      <p className="desc">
+                        {payload[0].payload.Date.toDateString()} :{" "}
+                        {formatNumber(parseInt(payload[0].value))}
+                      </p>
+                    </div>
+                  );
+                }
+                return "";
+              }}
+            />
             <Legend />
             {timeshift ? (
               <Line
@@ -155,10 +245,16 @@ export default function Graph({
               <Line
                 key={country}
                 type="monotone"
-                dataKey={country}
+                dataKey={country + " - deaths"}
                 stroke={getRandomColor()}
               />
             ))}
+            <Line
+              key={"yaaaay"}
+              type="monotone"
+              dataKey={"usa - deaths - prediction"}
+              stroke={getRandomColor()}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>

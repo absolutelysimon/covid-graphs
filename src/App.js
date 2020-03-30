@@ -19,12 +19,12 @@ import ProcessData from "./ProcessData";
 
 function App() {
   const [thedata, setThedata] = useState(false);
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState(["usa"]);
   const [countryCount, setCountryCount] = useState(0);
   const [dataCategory, setDataCategory] = useState("DEATHS");
   const [timeshift, setTimeshift] = useState(false);
-  const [deaths, setDeaths] = useState(false);
-  const [cases, setCases] = useState(true);
+  const [deaths, setDeaths] = useState(true);
+  const [cases, setCases] = useState(false);
   const [recovered, setRecovered] = useState(false);
   const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
@@ -37,7 +37,7 @@ function App() {
     return (
       <>
         <Grid>
-          <Grid item xs={5}>
+          <Grid item xs={9}>
             <Graph
               thedata={thedata}
               countries={countries}
