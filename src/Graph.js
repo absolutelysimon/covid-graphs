@@ -57,7 +57,7 @@ export default function Graph({
           new_chart_data[country] = {
             deaths: dataset.timeline.deaths,
             cases: dataset.timeline.cases,
-            recovered: dataset.recovered
+            recovered: dataset.timeline.recovered
           };
         } else if (dataset.country === country) {
           if (new_chart_data[country]["provinces"]) {
