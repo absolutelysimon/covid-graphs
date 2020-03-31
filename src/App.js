@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import Graph from "./Graph";
 import "./App.css";
-import countries_list from "./countries_list";
 import {
   Button,
   MenuItem,
@@ -19,19 +18,26 @@ import ProcessData from "./ProcessData";
 
 function App() {
   const [thedata, setThedata] = useState(false);
-  const [countries, setCountries] = useState(["usa"]);
+  const [countries, setCountries] = useState(["Canada"]);
   const [countryCount, setCountryCount] = useState(0);
   const [dataCategory, setDataCategory] = useState("DEATHS");
   const [timeshift, setTimeshift] = useState(false);
   const [deaths, setDeaths] = useState(true);
   const [cases, setCases] = useState(false);
   const [recovered, setRecovered] = useState(false);
+  const [predictions, setPredictions] = useState(false);
   const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
     targetUrl = "https://corona.lmao.ninja/v2/historical";
   // debugger;
 
   if (thedata) {
+    let countries_list = [];
+    for (let i in thedata) {
+      if (!countries_list.includes(thedata[i].country)) {
+        countries_list.push(thedata[i].country);
+      }
+    }
     // console.log(thedata);
     // debugger;
     return (
@@ -48,6 +54,7 @@ function App() {
               deaths={deaths}
               cases={cases}
               recoverd={recovered}
+              predictions={predictions}
             />
           </Grid>
           <Grid item xs={2}>
@@ -69,7 +76,7 @@ function App() {
               <Chip
                 label={ele}
                 onDelete={(evt, oldValue) =>
-                  setCountries(countries.indexOf(oldValue), 1)
+                  setCountries(countries.splice(countries.indexOf(oldValue), 1))
                 }
               />
             ))}
@@ -77,7 +84,7 @@ function App() {
             <Checkbox
               checked={cases}
               onChange={evt => setCases(evt.target.checked)}
-              label="Cases"
+              label="Total Cases"
               inputProps={{ "aria-label": "primary checkbox" }}
             />
             Deaths
@@ -85,6 +92,13 @@ function App() {
               checked={deaths}
               onChange={evt => setDeaths(evt.target.checked)}
               label="Deaths"
+            />
+            Active
+            <Checkbox
+              checked={recovered}
+              onChange={evt => setRecovered(evt.target.checked)}
+              label="Active Cases"
+              inputProps={{ "aria-label": "primary checkbox" }}
             />
           </Grid>
         </Grid>

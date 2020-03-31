@@ -7,6 +7,7 @@ const countries_list = [
   "antigua and barbuda",
   "argentina",
   "armenia",
+  "australia",
   "austria",
   "azerbaijan",
   "bahamas",
@@ -30,6 +31,7 @@ const countries_list = [
   "central african republic",
   "chad",
   "chile",
+  "china",
   "colombia",
   "congo (brazzaville)",
   "congo (kinshasa)",
@@ -171,7 +173,8 @@ const countries_list = [
   "guinea-bissau",
   "mali",
   "saint kitts and nevis",
-  "kosovo"
+  "kosovo",
+  "burma",
+  "ms zaandam"
 ];
-
 export default countries_list;

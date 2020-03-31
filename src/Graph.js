@@ -21,8 +21,20 @@ export default function Graph({
   countryCount,
   allCountries,
   dataCategory,
+  deaths,
+  cases,
+  recovered,
+  predictions,
   timeshift = false
 }) {
+  // let all_countries = [];
+  // for (let i in thedata) {
+  //   if (!all_countries.includes(thedata[i].country)) {
+  //     all_countries.push(thedata[i].country);
+  //   }
+  // }
+  // console.log(JSON.stringify(all_countries));
+  // debugger;
   function getRandomColor() {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -36,25 +48,81 @@ export default function Graph({
     // debugger;
     let new_chart_data = [];
     let found = false;
+    // debugger;
     countries.forEach(country => {
+      new_chart_data[country] = [];
       thedata.forEach(dataset => {
         if (dataset.country === country && dataset.province === null) {
-          // debugger;
           found = true;
           new_chart_data[country] = {
             deaths: dataset.timeline.deaths,
-            cases: dataset.timeline.cases
+            cases: dataset.timeline.cases,
+            recovered: dataset.recovered
           };
         } else if (dataset.country === country) {
-          new_chart_data[country]["provinces"] = [
-            ...new_chart_data[country]["provinces"],
-            dataset.province
-          ];
+          if (new_chart_data[country]["provinces"]) {
+            new_chart_data[country]["provinces"].push({
+              province: dataset.province,
+              deaths: dataset.timeline.deaths,
+              cases: dataset.timeline.cases,
+              recovered: dataset.timeline.recovered
+            });
+          } else {
+            new_chart_data[country]["provinces"] = [
+              {
+                province: dataset.province,
+                deaths: dataset.timeline.deaths,
+                cases: dataset.timeline.cases,
+                recovered: dataset.timeline.recovered
+              }
+            ];
+            // debugger;
+          }
         }
       });
       if (!found) {
-        //Do other stuff
+        // debugger;
+        for (let country in new_chart_data) {
+          if (!new_chart_data[country]["deaths"]) {
+            let total_deaths = [];
+            let total_cases = [];
+            let total_recovered = [];
+            // debugger;
+            for (let province in new_chart_data[country]["provinces"]) {
+              let province_data =
+                new_chart_data[country]["provinces"][province];
+              for (let death_date in province_data.deaths) {
+                if (total_deaths[death_date]) {
+                  total_cases[death_date] += parseInt(
+                    province_data.cases[death_date]
+                  );
+                  total_deaths[death_date] += parseInt(
+                    province_data.deaths[death_date]
+                  );
+                  total_recovered[death_date] += parseInt(
+                    province_data.recovered[death_date]
+                  );
+                } else {
+                  total_deaths[death_date] = parseInt(
+                    province_data.deaths[death_date]
+                  );
+                  total_cases[death_date] = parseInt(
+                    province_data.cases[death_date]
+                  );
+                  total_recovered[death_date] = parseInt(
+                    province_data.recovered[death_date]
+                  );
+                }
+              }
+            }
+            // debugger;
+            new_chart_data[country]["deaths"] = total_deaths;
+            new_chart_data[country]["cases"] = total_cases;
+            new_chart_data[country]["recovered"] = total_recovered;
+          }
+        }
       }
+      found = false;
     });
     // debugger;
     return new_chart_data;
@@ -156,47 +224,78 @@ export default function Graph({
 
   let instance_data = ProcessData(thedata, countries);
   let chart_data = [];
-  let y_max = 0;
   for (const ele in instance_data) {
     //chart_data = [{date:01/24/16,country1:}]
     let idx = 0;
     for (const date in instance_data[ele].deaths) {
       // debugger;
-      if (parseInt(instance_data[ele].deaths[date]) > y_max) {
-        y_max = parseInt(instance_data[ele].deaths[date]);
-      }
+      // if (parseInt(instance_data[ele].deaths[date]) > y_max) {
+      //   y_max = parseInt(instance_data[ele].deaths[date]);
+      // }
       // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
       if (chart_data[idx]) {
-        chart_data[idx][ele] = instance_data[ele].deaths[date];
+        chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
+        chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+        chart_data[idx][ele + " - active cases"] =
+          instance_data[ele].cases[date] - instance_data[ele].recovered[date];
       } else {
         chart_data[idx] = {};
         chart_data[idx]["Date"] = new Date(date);
         chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
+        chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+        chart_data[idx][ele + " - active cases"] =
+          instance_data[ele].cases[date] - instance_data[ele].recovered[date];
       }
       idx += 1;
     }
     idx = 0;
-    for (const date in instance_data[ele].cases) {
-      // debugger;
-      if (parseInt(instance_data[ele].cases[date]) > y_max) {
-        y_max = parseInt(instance_data[ele].cases[date]);
-      }
-      // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
-      if (chart_data[idx]) {
-        chart_data[idx][ele] = instance_data[ele].cases[date];
-      } else {
-        chart_data[idx] = {};
-        chart_data[idx]["Date"] = new Date(date);
-        chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
-      }
-      idx += 1;
-    }
+    // for (const date in instance_data[ele].cases) {
+    //   // debugger;
+    //   // if (parseInt(instance_data[ele].cases[date]) > y_max) {
+    //   //   y_max = parseInt(instance_data[ele].cases[date]);
+    //   // }
+    //   // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
+    //   if (chart_data[idx]) {
+    //     chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+    //   } else {
+    //     chart_data[idx] = {};
+    //     chart_data[idx]["Date"] = new Date(date);
+    //     chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+    //   }
+    //   idx += 1;
+    // }
+    // idx = 0;
+    // for (const date in instance_data[ele].cases) {
+    //   // debugger;
+    //   // if (parseInt(instance_data[ele].cases[date]) > y_max) {
+    //   //   y_max = parseInt(instance_data[ele].cases[date]);
+    //   // }
+    //   // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
+    //   if (chart_data[idx]) {
+    //     chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+    //   } else {
+    //     chart_data[idx] = {};
+    //     chart_data[idx]["Date"] = new Date(date);
+    //     chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+    //   }
+    //   idx += 1;
+    // }
   }
-  chart_data = ProcessProjection(thedata, chart_data, countries);
+  if (predictions) {
+    chart_data = ProcessProjection(thedata, chart_data, countries);
+  }
   function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   }
-  // debugger;
+  let y_max = 0;
+  for (let line in chart_data) {
+    for (let entry in chart_data[line]) {
+      if (chart_data[line][entry] > y_max) {
+        y_max = chart_data[line][entry];
+      }
+    }
+  }
+  debugger;
   return (
     <>
       <div style={{ width: "90%", height: 600 }}>
@@ -213,7 +312,7 @@ export default function Graph({
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" label="Date" />
             {console.log("Setting max to " + y_max)}
-            <YAxis domain={[0, 100000]} />
+            <YAxis domain={[0, y_max]} />
             <Tooltip
               content={({ active, payload, label }) => {
                 if (active) {
@@ -231,30 +330,73 @@ export default function Graph({
               }}
             />
             <Legend />
-            {timeshift ? (
-              <Line
-                key={timeshift}
-                type="monotone"
-                dataKey={timeshift}
-                stroke={getRandomColor()}
-              />
-            ) : (
-              ""
-            )}
-            {countries.map(country => (
-              <Line
-                key={country}
-                type="monotone"
-                dataKey={country + " - deaths"}
-                stroke={getRandomColor()}
-              />
-            ))}
-            <Line
-              key={"yaaaay"}
-              type="monotone"
-              dataKey={"usa - deaths - prediction"}
-              stroke={getRandomColor()}
-            />
+            {countries.map(country => {
+              let jsx_bundle = [];
+              if (deaths) {
+                jsx_bundle.push(
+                  <Line
+                    key={country + " - deaths"}
+                    type="monotone"
+                    dataKey={country + " - deaths"}
+                    stroke={getRandomColor()}
+                  />
+                );
+              }
+              if (cases) {
+                // debugger;
+                jsx_bundle.push(
+                  <Line
+                    key={country + " - cases"}
+                    type="monotone"
+                    dataKey={country + " - cases"}
+                    stroke={getRandomColor()}
+                  />
+                );
+              }
+              if (recovered) {
+                jsx_bundle.push(
+                  <Line
+                    key={country + " - active cases"}
+                    type="monotone"
+                    dataKey={country + " - active cases"}
+                    stroke={getRandomColor()}
+                  />
+                );
+              }
+              if (predictions) {
+                if (deaths) {
+                  jsx_bundle.push(
+                    <Line
+                      key={country + " - deaths - prediction"}
+                      type="monotone"
+                      dataKey={country + " - deaths - prediction"}
+                      stroke={getRandomColor()}
+                    />
+                  );
+                }
+                if (cases) {
+                  jsx_bundle.push(
+                    <Line
+                      key={country + " - cases - prediction"}
+                      type="monotone"
+                      dataKey={country + " - cases - prediction"}
+                      stroke={getRandomColor()}
+                    />
+                  );
+                }
+                if (recovered) {
+                  jsx_bundle.push(
+                    <Line
+                      key={country + " - active cases - prediction"}
+                      type="monotone"
+                      dataKey={country + " - active cases - prediction"}
+                      stroke={getRandomColor()}
+                    />
+                  );
+                }
+              }
+              return jsx_bundle;
+            })}
           </LineChart>
         </ResponsiveContainer>
       </div>
