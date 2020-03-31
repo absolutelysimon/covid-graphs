@@ -295,7 +295,7 @@ export default function Graph({
       }
     }
   }
-  debugger;
+  // debuggesr;
   return (
     <>
       <div style={{ width: "90%", height: 600 }}>
@@ -319,10 +319,12 @@ export default function Graph({
                   // debugger;
                   return (
                     <div className="custom-tooltip">
-                      <p className="desc">
-                        {payload[0].payload.Date.toDateString()} :{" "}
-                        {formatNumber(parseInt(payload[0].value))}
-                      </p>
+                      <h3>{payload[0].payload.Date.toDateString()}</h3>
+                      {payload.map(ele => (
+                        <div>
+                          {ele.name} - {formatNumber(parseInt(ele.value))}
+                        </div>
+                      ))}
                     </div>
                   );
                 }

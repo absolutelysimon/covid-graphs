@@ -39,11 +39,11 @@ function App() {
       }
     }
     // console.log(thedata);
-    // debugger;
+    debugger;
     return (
       <>
         <Grid>
-          <Grid item xs={9}>
+          <Grid item xs={12}>
             <Graph
               thedata={thedata}
               countries={countries}
@@ -53,11 +53,11 @@ function App() {
               timeshift={timeshift}
               deaths={deaths}
               cases={cases}
-              recoverd={recovered}
+              recovered={recovered}
               predictions={predictions}
             />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={6}>
             <Autocomplete
               options={countries_list}
               clearOnEscape
@@ -75,11 +75,14 @@ function App() {
             {countries.map(ele => (
               <Chip
                 label={ele}
-                onDelete={(evt, oldValue) =>
-                  setCountries(countries.splice(countries.indexOf(oldValue), 1))
-                }
+                value={ele}
+                onDelete={evt => {
+                  setCountries(countries.filter(e => e !== ele));
+                }}
               />
             ))}
+          </Grid>
+          <Grid item xs={6}>
             Cases
             <Checkbox
               checked={cases}
@@ -102,12 +105,6 @@ function App() {
             />
           </Grid>
         </Grid>
-        <Select onChange={evt => setDataCategory(evt.target.value)}>
-          <MenuItem value={"CASES"}>Total Cases</MenuItem>
-          <MenuItem value={"RECOVERED"}>Recovered</MenuItem>
-          <MenuItem value={"DEATHS"}>Deaths</MenuItem>
-          <MenuItem></MenuItem>
-        </Select>
       </>
     );
   } else {
@@ -156,4 +153,12 @@ export default App;
             />
           )}
         />
+
+        
+        <Select onChange={evt => setDataCategory(evt.target.value)}>
+          <MenuItem value={"CASES"}>Total Cases</MenuItem>
+          <MenuItem value={"RECOVERED"}>Recovered</MenuItem>
+          <MenuItem value={"DEATHS"}>Deaths</MenuItem>
+          <MenuItem></MenuItem>
+        </Select>
         */
