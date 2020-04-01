@@ -11,7 +11,8 @@ import {
   FormControl,
   OutlinedInput,
   Chip,
-  Checkbox
+  Checkbox,
+  Slider
 } from "@material-ui/core/";
 import { Autocomplete } from "@material-ui/lab/";
 import ProcessData from "./ProcessData";
@@ -39,7 +40,7 @@ function App() {
       }
     }
     // console.log(thedata);
-    debugger;
+    // debugger;
     return (
       <>
         <Grid>
@@ -102,6 +103,16 @@ function App() {
               onChange={evt => setRecovered(evt.target.checked)}
               label="Active Cases"
               inputProps={{ "aria-label": "primary checkbox" }}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            Date Range
+            <Slider
+              value={10}
+              onChange={handleChange}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              getAriaValueText={valuetext}
             />
           </Grid>
         </Grid>

@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer
 } from "recharts";
-import regression from "regression";
+import regression from "./regression-js/src/regression";
 
 // function findCountry(thedata, country) {
 //   return thedata.filter(ent => ent.country === country);
@@ -234,17 +234,29 @@ export default function Graph({
       // }
       // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
       if (chart_data[idx]) {
-        chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
-        chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
-        chart_data[idx][ele + " - active cases"] =
-          instance_data[ele].cases[date] - instance_data[ele].recovered[date];
+        if (deaths) {
+          chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
+        }
+        if (cases) {
+          chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+        }
+        if (recovered) {
+          chart_data[idx][ele + " - active cases"] =
+            instance_data[ele].cases[date] - instance_data[ele].recovered[date];
+        }
       } else {
         chart_data[idx] = {};
         chart_data[idx]["Date"] = new Date(date);
-        chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
-        chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
-        chart_data[idx][ele + " - active cases"] =
-          instance_data[ele].cases[date] - instance_data[ele].recovered[date];
+        if (deaths) {
+          chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
+        }
+        if (cases) {
+          chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+        }
+        if (recovered) {
+          chart_data[idx][ele + " - active cases"] =
+            instance_data[ele].cases[date] - instance_data[ele].recovered[date];
+        }
       }
       idx += 1;
     }
@@ -290,12 +302,27 @@ export default function Graph({
   let y_max = 0;
   for (let line in chart_data) {
     for (let entry in chart_data[line]) {
-      if (chart_data[line][entry] > y_max) {
+      debugger;
+      if (
+        entry !== "Date" &&
+        parseInt(chart_data[line][entry]) > y_max &&
+        ((entry.includes("deaths") && deaths) ||
+          (entry.includes("cases") && (cases || recovered)))
+      ) {
         y_max = chart_data[line][entry];
       }
     }
   }
-  // debuggesr;
+  y_max = y_max * 1.1;
+  y_max = Math.ceil(y_max / 10) * 10;
+  for (let h = 0; h < 7; h++) {
+    let date = new Date(chart_data[chart_data.length - 1]["Date"]);
+    chart_data.push({ Date: new Date(date.setDate(date.getDate() + 1)) });
+  }
+  // console.log("Ymax: " + y_max);
+  // y_max = y_max * 1.1;
+  // console.log(y_max);
+  debugger;
   return (
     <>
       <div style={{ width: "90%", height: 600 }}>
@@ -312,10 +339,10 @@ export default function Graph({
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" label="Date" />
             {console.log("Setting max to " + y_max)}
-            <YAxis domain={[0, y_max]} />
+            <YAxis domain={[0, parseInt(y_max)]} />
             <Tooltip
               content={({ active, payload, label }) => {
-                if (active) {
+                if (active && payload[0]) {
                   // debugger;
                   return (
                     <div className="custom-tooltip">
