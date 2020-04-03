@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer
 } from "recharts";
-import regression from "./regression-js/src/regression";
+import regression from "regression";
 
 // function findCountry(thedata, country) {
 //   return thedata.filter(ent => ent.country === country);
@@ -302,7 +302,7 @@ export default function Graph({
   let y_max = 0;
   for (let line in chart_data) {
     for (let entry in chart_data[line]) {
-      debugger;
+      // debugger;
       if (
         entry !== "Date" &&
         parseInt(chart_data[line][entry]) > y_max &&
@@ -322,7 +322,7 @@ export default function Graph({
   // console.log("Ymax: " + y_max);
   // y_max = y_max * 1.1;
   // console.log(y_max);
-  debugger;
+  // debugger;
   return (
     <>
       <div style={{ width: "90%", height: 600 }}>
@@ -338,7 +338,7 @@ export default function Graph({
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" label="Date" />
-            {console.log("Setting max to " + y_max)}
+            {/* {console.log("Setting max to " + y_max)} */}
             <YAxis domain={[0, parseInt(y_max)]} />
             <Tooltip
               content={({ active, payload, label }) => {

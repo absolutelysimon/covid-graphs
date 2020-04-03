@@ -27,6 +27,8 @@ function App() {
   const [cases, setCases] = useState(false);
   const [recovered, setRecovered] = useState(false);
   const [predictions, setPredictions] = useState(false);
+  const [dateMax, setDateMax] = useState(0);
+  const [dateMin, setDateMin] = useState(50);
   const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
     targetUrl = "https://corona.lmao.ninja/v2/historical";
@@ -40,7 +42,9 @@ function App() {
       }
     }
     // console.log(thedata);
-    // debugger;
+    debugger;
+    let temp_date_min = dateMin;
+    let temp_date_max = dateMax;
     return (
       <>
         <Grid>
@@ -108,12 +112,36 @@ function App() {
           <Grid item xs={6}>
             Date Range
             <Slider
-              value={10}
-              onChange={handleChange}
+              defaultValue={[
+                0,
+                Math.floor((new Date() - new Date("01/22/20")) / 86400000) - 1
+              ]}
+              marks={Object.keys(thedata[0].timeline.cases).map((ele, index) =>
+                index % 20 === 0 ? { label: ele, value: index } : {}
+              )}
+              onChangeCommitted={(evt, value) => {
+                if (dateMin !== value[0]) {
+                  setDateMin(value[0]);
+                }
+                if (dateMax !== value[1]) {
+                  setDateMax(value[1]);
+                }
+              }}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
-              getAriaValueText={valuetext}
+              valueLabelFormat={value => {
+                return Object.keys(thedata[0].timeline.cases)[value];
+              }}
             />
+            <Slider
+              defaultValue={20}
+              aria-labelledby="discrete-slider-custom"
+              step={10}
+              valueLabelDisplay="auto"
+            />
+            <div>
+              DateMin:{dateMin}Max:{dateMax}
+            </div>
           </Grid>
         </Grid>
       </>
