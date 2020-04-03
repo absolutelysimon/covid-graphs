@@ -12,7 +12,8 @@ import {
   OutlinedInput,
   Chip,
   Checkbox,
-  Slider
+  Slider,
+  Tooltip
 } from "@material-ui/core/";
 import { Autocomplete } from "@material-ui/lab/";
 import ProcessData from "./ProcessData";
@@ -42,9 +43,6 @@ function App() {
       }
     }
     // console.log(thedata);
-    debugger;
-    let temp_date_min = dateMin;
-    let temp_date_max = dateMax;
     return (
       <>
         <Grid>
@@ -112,13 +110,15 @@ function App() {
           <Grid item xs={6}>
             Date Range
             <Slider
+              max={Math.floor((new Date() - new Date("01/22/20")) / 86400000)}
               defaultValue={[
                 0,
-                Math.floor((new Date() - new Date("01/22/20")) / 86400000) - 1
+                Math.floor((new Date() - new Date("01/22/20")) / 86400000)
               ]}
               marks={Object.keys(thedata[0].timeline.cases).map((ele, index) =>
                 index % 20 === 0 ? { label: ele, value: index } : {}
               )}
+              aria-label="custom thumb label"
               onChangeCommitted={(evt, value) => {
                 if (dateMin !== value[0]) {
                   setDateMin(value[0]);
@@ -127,17 +127,21 @@ function App() {
                   setDateMax(value[1]);
                 }
               }}
+              ValueLabelComponent={({ children, open, value }) => (
+                <Tooltip
+                  open={open}
+                  enterTouchDelay={0}
+                  placement="top"
+                  title={value}
+                >
+                  {children}
+                </Tooltip>
+              )}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               valueLabelFormat={value => {
                 return Object.keys(thedata[0].timeline.cases)[value];
               }}
-            />
-            <Slider
-              defaultValue={20}
-              aria-labelledby="discrete-slider-custom"
-              step={10}
-              valueLabelDisplay="auto"
             />
             <div>
               DateMin:{dateMin}Max:{dateMax}
