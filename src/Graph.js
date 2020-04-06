@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer
 } from "recharts";
-import regression from "regression";
+import regression, { logarithmic } from "regression";
 
 // function findCountry(thedata, country) {
 //   return thedata.filter(ent => ent.country === country);
@@ -25,7 +25,8 @@ export default function Graph({
   cases,
   recovered,
   predictions,
-  timeshift = false
+  timeshift = false,
+  logarithmic
 }) {
   // let all_countries = [];
   // for (let i in thedata) {
@@ -299,6 +300,22 @@ export default function Graph({
   function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   }
+
+  if (logarithmic) {
+    debugger;
+    for (let line in chart_data) {
+      for (let entry in chart_data[line]) {
+        // debugger;
+        if (entry !== "Date") {
+          chart_data[line][entry] =
+            (chart_data[line][entry] === 0
+              ? 0
+              : Math.log(parseInt(chart_data[line][entry]))) / Math.log(10);
+        }
+      }
+    }
+  }
+
   let y_max = 0;
   for (let line in chart_data) {
     for (let entry in chart_data[line]) {

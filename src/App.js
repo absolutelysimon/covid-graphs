@@ -15,7 +15,11 @@ import {
   Slider,
   Tooltip
 } from "@material-ui/core/";
-import { Autocomplete } from "@material-ui/lab/";
+import {
+  Autocomplete,
+  ToggleButton,
+  ToggleButtonGroup
+} from "@material-ui/lab/";
 import ProcessData from "./ProcessData";
 
 function App() {
@@ -30,6 +34,8 @@ function App() {
   const [predictions, setPredictions] = useState(false);
   const [dateMax, setDateMax] = useState(0);
   const [dateMin, setDateMin] = useState(50);
+  const [mode, setMode] = useState("NATIONS");
+  const [logarithmic, setLogarithmic] = useState(false);
   const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
     targetUrl = "https://corona.lmao.ninja/v2/historical";
@@ -46,6 +52,25 @@ function App() {
     return (
       <>
         <Grid>
+          <Grid item xs={12} alignContent="center" alignItems="center">
+            <ToggleButtonGroup
+              value={mode}
+              exclusive
+              onChange={(evt, value) => setMode(value)}
+              aria-label="text alignment"
+            >
+              <ToggleButton value="WORLD" aria-label="left aligned">
+                World
+              </ToggleButton>
+              <ToggleButton value="NATIONS" aria-label="centered">
+                Nations
+              </ToggleButton>
+              <ToggleButton value="PROVINCES" aria-label="right aligned">
+                Provinces/States
+              </ToggleButton>
+            </ToggleButtonGroup>
+            {mode}
+          </Grid>
           <Grid item xs={12}>
             <Graph
               thedata={thedata}
@@ -58,6 +83,7 @@ function App() {
               cases={cases}
               recovered={recovered}
               predictions={predictions}
+              logarithmic={logarithmic}
             />
           </Grid>
           <Grid item xs={6}>
@@ -86,6 +112,12 @@ function App() {
             ))}
           </Grid>
           <Grid item xs={6}>
+            Logarithmic
+            <Checkbox
+              checked={logarithmic}
+              onChange={evt => console.log(evt.target.checked)}
+              label="Logarithmic"
+            />
             Cases
             <Checkbox
               checked={cases}
