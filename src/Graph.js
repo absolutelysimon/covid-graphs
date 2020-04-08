@@ -26,7 +26,9 @@ export default function Graph({
   recovered,
   predictions,
   timeshift = false,
-  logarithmic
+  logarithmic,
+  dateMin,
+  dateMax
 }) {
   // let all_countries = [];
   // for (let i in thedata) {
@@ -230,33 +232,44 @@ export default function Graph({
     let idx = 0;
     for (const date in instance_data[ele].deaths) {
       // debugger;
-      // if (parseInt(instance_data[ele].deaths[date]) > y_max) {
-      //   y_max = parseInt(instance_data[ele].deaths[date]);
-      // }
-      // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
-      if (chart_data[idx]) {
-        if (deaths) {
-          chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
-        }
-        if (cases) {
-          chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
-        }
-        if (recovered) {
-          chart_data[idx][ele + " - active cases"] =
-            instance_data[ele].cases[date] - instance_data[ele].recovered[date];
-        }
-      } else {
-        chart_data[idx] = {};
-        chart_data[idx]["Date"] = new Date(date);
-        if (deaths) {
-          chart_data[idx][ele + " - deaths"] = instance_data[ele].deaths[date];
-        }
-        if (cases) {
-          chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
-        }
-        if (recovered) {
-          chart_data[idx][ele + " - active cases"] =
-            instance_data[ele].cases[date] - instance_data[ele].recovered[date];
+      if (
+        new Date(date) >=
+          new Date(Object.keys(instance_data[ele].cases)[dateMin]) &&
+        new Date(date) <=
+          new Date(Object.keys(instance_data[ele].cases)[dateMax])
+      ) {
+        // if (parseInt(instance_data[ele].deaths[date]) > y_max) {
+        //   y_max = parseInt(instance_data[ele].deaths[date]);
+        // }
+        // parseInt(value) > y_max ? (y_max = parseInt(value)) : null;
+        if (chart_data[idx]) {
+          if (deaths) {
+            chart_data[idx][ele + " - deaths"] =
+              instance_data[ele].deaths[date];
+          }
+          if (cases) {
+            chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+          }
+          if (recovered) {
+            chart_data[idx][ele + " - active cases"] =
+              instance_data[ele].cases[date] -
+              instance_data[ele].recovered[date];
+          }
+        } else {
+          chart_data[idx] = {};
+          chart_data[idx]["Date"] = new Date(date);
+          if (deaths) {
+            chart_data[idx][ele + " - deaths"] =
+              instance_data[ele].deaths[date];
+          }
+          if (cases) {
+            chart_data[idx][ele + " - cases"] = instance_data[ele].cases[date];
+          }
+          if (recovered) {
+            chart_data[idx][ele + " - active cases"] =
+              instance_data[ele].cases[date] -
+              instance_data[ele].recovered[date];
+          }
         }
       }
       idx += 1;
@@ -339,7 +352,7 @@ export default function Graph({
   // console.log("Ymax: " + y_max);
   // y_max = y_max * 1.1;
   // console.log(y_max);
-  // debugger;
+  debugger;
   return (
     <>
       <div style={{ width: "90%", height: 600 }}>

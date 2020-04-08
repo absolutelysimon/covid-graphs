@@ -32,13 +32,15 @@ function App() {
   const [cases, setCases] = useState(false);
   const [recovered, setRecovered] = useState(false);
   const [predictions, setPredictions] = useState(false);
-  const [dateMax, setDateMax] = useState(0);
-  const [dateMin, setDateMin] = useState(50);
+  const [dateMax, setDateMax] = useState(
+    Math.floor((new Date() - new Date("01/22/20")) / 86400000) - 1
+  );
+  const [dateMin, setDateMin] = useState(5);
   const [mode, setMode] = useState("NATIONS");
   const [logarithmic, setLogarithmic] = useState(false);
   const usaURL = "https://covidtracking.com/api/states/daily";
   const proxyUrl = "https://floating-headland-43054.herokuapp.com/",
-    targetUrl = "https://corona.lmao.ninja/v2/historical";
+    targetUrl = "https://corona.lmao.ninja/v2/historical?lastdays=all";
   // debugger;
 
   if (thedata) {
@@ -49,6 +51,7 @@ function App() {
       }
     }
     // console.log(thedata);
+    // debugger;
     return (
       <>
         <Grid>
@@ -84,6 +87,8 @@ function App() {
               recovered={recovered}
               predictions={predictions}
               logarithmic={logarithmic}
+              dateMax={dateMax}
+              dateMin={dateMin}
             />
           </Grid>
           <Grid item xs={6}>
@@ -142,6 +147,7 @@ function App() {
           <Grid item xs={6}>
             Date Range
             <Slider
+              min={0}
               max={Math.floor((new Date() - new Date("01/22/20")) / 86400000)}
               defaultValue={[
                 0,
