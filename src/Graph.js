@@ -231,7 +231,7 @@ export default function Graph({
     //chart_data = [{date:01/24/16,country1:}]
     let idx = 0;
     for (const date in instance_data[ele].deaths) {
-      // debugger;
+      debugger;
       if (
         new Date(date) >=
           new Date(Object.keys(instance_data[ele].cases)[dateMin]) &&
@@ -271,8 +271,8 @@ export default function Graph({
               instance_data[ele].recovered[date];
           }
         }
+        idx += 1;
       }
-      idx += 1;
     }
     idx = 0;
     // for (const date in instance_data[ele].cases) {
@@ -345,7 +345,7 @@ export default function Graph({
   }
   y_max = y_max * 1.1;
   y_max = Math.ceil(y_max / 10) * 10;
-  for (let h = 0; h < 7; h++) {
+  for (let h = 0; h < 0; h++) {
     let date = new Date(chart_data[chart_data.length - 1]["Date"]);
     chart_data.push({ Date: new Date(date.setDate(date.getDate() + 1)) });
   }

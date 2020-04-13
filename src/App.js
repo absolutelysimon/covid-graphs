@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import Graph from "./Graph";
 import "./App.css";
+import Dashboard from "./dashboard/Dashboard";
 import {
   Button,
   MenuItem,
@@ -13,12 +14,12 @@ import {
   Chip,
   Checkbox,
   Slider,
-  Tooltip
+  Tooltip,
 } from "@material-ui/core/";
 import {
   Autocomplete,
   ToggleButton,
-  ToggleButtonGroup
+  ToggleButtonGroup,
 } from "@material-ui/lab/";
 import ProcessData from "./ProcessData";
 
@@ -54,6 +55,7 @@ function App() {
     // debugger;
     return (
       <>
+        <Dashboard />
         <Grid>
           <Grid item xs={12} alignContent="center" alignItems="center">
             <ToggleButtonGroup
@@ -102,16 +104,16 @@ function App() {
                   setCountries([...countries, newValue]);
                 }
               }}
-              renderInput={params => (
+              renderInput={(params) => (
                 <TextField {...params} label="Add a country" margin="normal" />
               )}
             />
-            {countries.map(ele => (
+            {countries.map((ele) => (
               <Chip
                 label={ele}
                 value={ele}
-                onDelete={evt => {
-                  setCountries(countries.filter(e => e !== ele));
+                onDelete={(evt) => {
+                  setCountries(countries.filter((e) => e !== ele));
                 }}
               />
             ))}
@@ -120,26 +122,26 @@ function App() {
             Logarithmic
             <Checkbox
               checked={logarithmic}
-              onChange={evt => console.log(evt.target.checked)}
+              onChange={(evt) => console.log(evt.target.checked)}
               label="Logarithmic"
             />
             Cases
             <Checkbox
               checked={cases}
-              onChange={evt => setCases(evt.target.checked)}
+              onChange={(evt) => setCases(evt.target.checked)}
               label="Total Cases"
               inputProps={{ "aria-label": "primary checkbox" }}
             />
             Deaths
             <Checkbox
               checked={deaths}
-              onChange={evt => setDeaths(evt.target.checked)}
+              onChange={(evt) => setDeaths(evt.target.checked)}
               label="Deaths"
             />
             Active
             <Checkbox
               checked={recovered}
-              onChange={evt => setRecovered(evt.target.checked)}
+              onChange={(evt) => setRecovered(evt.target.checked)}
               label="Active Cases"
               inputProps={{ "aria-label": "primary checkbox" }}
             />
@@ -151,7 +153,7 @@ function App() {
               max={Math.floor((new Date() - new Date("01/22/20")) / 86400000)}
               defaultValue={[
                 0,
-                Math.floor((new Date() - new Date("01/22/20")) / 86400000)
+                Math.floor((new Date() - new Date("01/22/20")) / 86400000),
               ]}
               marks={Object.keys(thedata[0].timeline.cases).map((ele, index) =>
                 index % 20 === 0 ? { label: ele, value: index } : {}
@@ -177,7 +179,7 @@ function App() {
               )}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
-              valueLabelFormat={value => {
+              valueLabelFormat={(value) => {
                 return Object.keys(thedata[0].timeline.cases)[value];
               }}
             />
@@ -190,8 +192,8 @@ function App() {
     );
   } else {
     fetch(proxyUrl + targetUrl)
-      .then(blob => blob.json())
-      .then(data => {
+      .then((blob) => blob.json())
+      .then((data) => {
         // console.table(data);
         // console.log(data);
         // debugger;
@@ -200,7 +202,7 @@ function App() {
         let c_idx = 0;
         let temp_arr = [];
         for (let p of data) {
-          if (!temp_arr.find(ele => ele.country === p.country)) {
+          if (!temp_arr.find((ele) => ele.country === p.country)) {
             temp_arr.push({ country: p.country, index: c_idx });
           }
           c_idx += 1;
@@ -208,7 +210,7 @@ function App() {
         // debugger;
         return {};
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         return e;
       });
